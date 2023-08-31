@@ -6,3 +6,17 @@ Rstring="HCL" assigns the value “HCL” to the variable Rstring.
 file_path=/root/ABC.txt assigns the value “/root/ABC.txt” to the variable file_path, which is the path of the text file to be modified.
 sed -i "2s/${string1}/${Rstring}/" "$file_path" uses the sed command to replace the value of string1 with the value of Rstring in the second line of the text file. The -i option means to edit the file in place2.
 nl "$file_path" uses the nl command to display the text file with line numbers
+
+#!/bin/bash
+
+input_file="a1.txt"
+
+while IFS= read -r line; do
+    first_word=$(echo "$line" | awk '{print $1}')
+    if [[ $first_word =~ [^a-zA-Z] ]]; then
+        echo "$line"
+    else
+        replaced_line=$(echo "$line" | sed 's/\bsanket\b/hcl/g')
+        echo "$replaced_line"
+    fi
+done < "$input_file"
