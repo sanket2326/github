@@ -1,7 +1,8 @@
 sanket
 welcome into the github account 
 
-
-
-
-helooo 
+string1="Dayanand" assigns the value “Dayanand” to the variable string1.
+Rstring="HCL" assigns the value “HCL” to the variable Rstring.
+file_path=/root/ABC.txt assigns the value “/root/ABC.txt” to the variable file_path, which is the path of the text file to be modified.
+sed -i "2s/${string1}/${Rstring}/" "$file_path" uses the sed command to replace the value of string1 with the value of Rstring in the second line of the text file. The -i option means to edit the file in place2.
+nl "$file_path" uses the nl command to display the text file with line numbers
