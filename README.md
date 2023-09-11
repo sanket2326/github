@@ -1,15 +1,12 @@
 @echo off
-setlocal
+set BC_PATH="C:\Program Files\Beyond Compare 4\BCompare.exe"  // Update this path to the Beyond Compare executable location
+set ZIP1="C:\Path\to\your\first.zip"                     // Update with the path to your first zip file
+set ZIP2="C:\Path\to\your\second.zip"                    // Update with the path to your second zip file
+set OUTPUT_PATH="C:\Path\to\output\folder"               // Update with the desired output folder
 
-set BC_PATH="C:\Program Files\Beyond Compare 4\BComp.exe"  -- Modify this path to point to your Beyond Compare executable.
+"%BC_PATH%" @c:\path\to\script.bcs %ZIP1% %ZIP2% %OUTPUT_PATH%
 
-set FIRST_ZIP="C:\path\to\first.zip"  -- Replace with the path to your first ZIP file.
-set SECOND_ZIP="C:\path\to\second.zip"  -- Replace with the path to your second ZIP file.
-
-set ORPHANS_REPORT="C:\path\to\orphans.txt"  -- Replace with the path where you want to save the orphans report.
-
-"%BC_PATH%" "%FIRST_ZIP%" "%SECOND_ZIP%" /fileviewer=Text /solo /lefttitle="First ZIP" /righttitle="Second ZIP" /savetarget="%ORPHANS_REPORT%" /filefilter="*.*" /criteria=orphan
-
-echo Comparison complete. Orphaned files have been saved to "%ORPHANS_REPORT%"
-
-endlocal
+criteria binary
+load %1 %2
+expand all
+folder-report layout:side-by-side options:display-mismatches output-to:%3\orphans_report.txt
